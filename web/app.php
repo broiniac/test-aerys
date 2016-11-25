@@ -15,8 +15,6 @@ __halt_compiler();
 
 use Aerys\{ Host, Request, Response, Router, Websocket, function root, function router, function websocket };
 
-$host = new Aerys\Host();
-
 /* --- Global server options -------------------------------------------------------------------- */
 
 const AERYS_OPTIONS = Config::OPTIONS;
