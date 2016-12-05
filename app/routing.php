@@ -4,7 +4,11 @@ use Aerys\{ Host, Request, Response, Router, Websocket, function root, function 
 
 class Routing {
     public static function init() {
+
         $router = router()
+            ->get("/", function(Request $req, Response $res) {
+                $res->end("<html><body><h1>Hello, world.</h1></body></html>");
+            })
             ->get("/", function(Request $req, Response $res) {
                 $res->end("<html><body><h1>Hello, world.</h1></body></html>");
             })
