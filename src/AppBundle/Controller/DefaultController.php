@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use Aerys\{Request, Response};
+
 /**
  * Class ArticleController
  * @package AppBundle\Controller
@@ -15,8 +17,9 @@ class DefaultController
      * @Route("/artykul/{slug}", name="article_details")
      * @ParamConverter("article", class="AppBundle:Article")
      */
-    public function helloAction()
+    public function helloAction(Request $req, Response $res, $title = 'ASDF')
     {
-        return 'Hello World!';
+        $lol .= var_export($_GET, true);
+        $res->end("<html><body><h1>Hello World, $lol!</h1></body></html>");
     }
 }

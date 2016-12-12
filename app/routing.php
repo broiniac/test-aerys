@@ -3,16 +3,29 @@
 use Aerys\{ Host, Request, Response, Router, Websocket, function root, function router, function websocket };
 
 class Routing {
+    private static $routes = [
+        [
+            'name' => 'default_hello',
+            'url' => '/hello/{title}',
+            'method' => 'GET',
+            'action' => 'AppBundle\\Controller\\DefaultController::helloAction',
+        ]
+    ];
+
     public static function init() {
 
-        $router = router()
-            ->get("/", function(Request $req, Response $res) {
-                $res->end("<html><body><h1>Hello, world.</h1></body></html>");
-            })
-            ->get("/", function(Request $req, Response $res) {
-                $res->end("<html><body><h1>Hello, world.</h1></body></html>");
-            })
-            ->get("/router/{myarg}", function(Request $req, Response $res, array $routeArgs) {
+        $router = router();
+
+        foreach (self::$routes as $route) {
+            $router->route(
+                $route['method'],
+                $route['url'],
+                function(Request $req, Response $res) use ($route) {
+                    call_user_func($route['action'], $req, $res, $title);
+            });
+        }
+
+        $router->get("/router/{myarg}", function(Request $req, Response $res, array $routeArgs) {
                 $body = "<html><body><h1>Route Args at param 3</h1>".print_r($routeArgs, true)."</body></html>";
                 $res->end($body);
             })

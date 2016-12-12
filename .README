@@ -1,0 +1,4 @@
+Run with:
+```
+php ./bin/server -d -c web/app.php
+```

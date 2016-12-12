@@ -1,5 +1,7 @@
 <?php
 
+// #NOTICE: It dont have to be here, but new users can easly spot message below
+
 // <ignore>
 if (!class_exists('Aerys\Process')) {
     if (PHP_MAJOR_VERSION < 7) {
@@ -13,26 +15,22 @@ eval(file_get_contents(__FILE__, null, null, __COMPILER_HALT_OFFSET__));
 __halt_compiler();
 // </ignore>
 
-use Aerys\{ Host, Request, Response, Router, Websocket, function root, function router, function websocket };
-
-/* --- Global server options -------------------------------------------------------------------- */
+use Aerys\{Host, Router, function root, Request, Response};
 
 const AERYS_OPTIONS = Config::OPTIONS;
 
-/* --- http://localhost:1337/ ------------------------------------------------------------------- */
-
-$router = Routing::init();
-
-// If none of our routes match try to serve a static file
-$root = root($docrootPath = __DIR__);
-
-// If no static files match fallback to this
-$fallback = function(Request $req, Response $res) {
-    $res->end("<html><body><h1>Fallback \o/</h1></body></html>");
-};
+// $fallback = function(Request $req, Response $res) {
+//     $html = '<pre>'
+//         . var_export($req, true)
+//         . '<hr />'
+//         . var_export($res, true)
+//         . '</pre>';
+//
+//     $res->end("<html><body>$html</body></html>");
+// };
 
 (new Host)
     ->expose("*", 1337)
-    ->use($router)
-    ->use($root)
-    ->use($fallback);
+    ->use(Routing::init())
+    ->use(root($docrootPath = __DIR__))
+;
