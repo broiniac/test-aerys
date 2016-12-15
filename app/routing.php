@@ -13,7 +13,6 @@ class Routing {
     ];
 
     public static function init() {
-
         $router = router();
 
         foreach (self::$routes as $route) {

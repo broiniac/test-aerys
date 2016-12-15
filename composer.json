@@ -20,5 +20,10 @@
   "require": {
     "php": "^7.0",
     "amphp/aerys": "^0.4.3"
+  },
+  "require-dev": {
+    "symfony/finder": "^3.2",
+    "symfony/var-dumper": "^3.2",
+    "symfony/process": "^3.2"
   }
 }
