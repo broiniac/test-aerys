@@ -1,4 +1,9 @@
-Run with:
+For dev server (autorestart on files change) run with:
+```
+php ./bin/server-dev
+```
+
+For normal server run with:
 ```
 php ./bin/server -d -c web/app.php
 ```
