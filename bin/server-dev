@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+
+error_reporting(E_ALL);
+require __DIR__ . "/../app/autoload.php";
+
+use Symfony\Component\Finder\Finder;
+
+$interval = 500000;
+$sdiff = ceil($interval/1000000);
+
+while(1) {
+    $finder = (new Finder())
+        ->files()
+        ->in(__DIR__.'/../')
+        ->exclude('vendor')
+        // ->in(__DIR__.'/../app')
+        // ->in(__DIR__.'/../src')
+        // ->in(__DIR__.'/../web')
+        ->date("since $sdiff seconds ago");
+
+    if (count($finder)) {
+
+        echo "COUNTED!\n";
+    } else {
+        echo "\t...nothing...\n";
+    }
+
+    usleep($interval);
+}

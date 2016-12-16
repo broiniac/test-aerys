@@ -17,9 +17,14 @@ class DefaultController
      * @Route("/artykul/{slug}", name="article_details")
      * @ParamConverter("article", class="AppBundle:Article")
      */
-    public function helloAction(Request $req, Response $res, $title = 'ASDF')
+    public function helloAction(Request $req, Response $res, $vars = [])
     {
-        $lol .= var_export($_GET, true);
-        $res->end("<html><body><h1>Hello World, $lol!</h1></body></html>");
+        $vars = var_export($vars, true);
+
+        $res->end("
+            <html><body>
+                <h1>Hello World, $vars!</h1>
+            </body></html>
+        ");
     }
 }

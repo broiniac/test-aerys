@@ -13,16 +13,14 @@ class Routing {
     ];
 
     public static function init() {
-
         $router = router();
 
         foreach (self::$routes as $route) {
             $router->route(
                 $route['method'],
                 $route['url'],
-                function(Request $req, Response $res) use ($route) {
-                    call_user_func($route['action'], $req, $res, $title);
-            });
+                $route['action']
+            );
         }
 
         $router->get("/router/{myarg}", function(Request $req, Response $res, array $routeArgs) {
