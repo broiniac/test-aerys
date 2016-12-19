@@ -9,7 +9,8 @@
     },
     "classmap": [
         "app/config.php",
-        "app/routing.php"
+        "app/routing.php",
+        "app/twig.php"
     ]
   },
   "autoload-dev": {
@@ -19,7 +20,8 @@
   },
   "require": {
     "php": "^7.0",
-    "amphp/aerys": "^0.4.3"
+    "amphp/aerys": "^0.4.3",
+    "twig/twig": "~1.0"
   },
   "require-dev": {
     "symfony/finder": "^3.2",

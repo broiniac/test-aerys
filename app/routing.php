@@ -15,7 +15,17 @@ class Routing {
     public static function init() {
         $router = router();
 
+        // $routes = [
+        //     [
+        //         'name' => 'default_hello',
+        //         'url' => '/hello/{title}',
+        //         'method' => 'GET',
+        //         'action' => (new AppBundle\Controller\DefaultController())->helloAction(),
+        //     ]
+        // ];
+
         foreach (self::$routes as $route) {
+        // foreach ($routes as $route) {
             $router->route(
                 $route['method'],
                 $route['url'],

@@ -10,6 +10,14 @@ use Aerys\{Request, Response};
  */
 class DefaultController
 {
+    // protected $twig;
+    //
+    // public function __construct($twig) {
+    //     $this->twig = new \TwigEngineLoader()($loader, [
+    //         'cache' => 'cache/views',
+    //     ]);
+    // }
+
     /**
      * @param Article $article
      * @return Response
@@ -20,11 +28,15 @@ class DefaultController
     public function helloAction(Request $req, Response $res, $vars = [])
     {
         $vars = var_export($vars, true);
+        $twig = (new \TwigEngineLoader())->init();
 
-        $res->end("
-            <html><body>
-                <h1>Hello World, $vars!</h1>
-            </body></html>
-        ");
+        $string = $twig->render(
+            'default/hello.html.twig',
+            [
+                'name' => $vars,
+            ]
+        );
+
+        $res->end($string);
     }
 }
