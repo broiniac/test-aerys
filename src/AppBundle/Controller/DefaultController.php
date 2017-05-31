@@ -27,13 +27,14 @@ class DefaultController
      */
     public function helloAction(Request $req, Response $res, $vars = [])
     {
-        $vars = var_export($vars, true);
+        // joł;
+        // $vars = var_export($vars, true);
         $twig = (new \TwigEngineLoader())->init();
 
         $string = $twig->render(
             'default/hello.html.twig',
             [
-                'name' => $vars,
+                'name' => $vars['title'],
             ]
         );
 
